@@ -32,5 +32,7 @@ for ele in range(len(eles)):
                     coeffs[ele][i] -= 1
 
 print(coeffs)
-print(type(coeffs))
-print(np.linalg.solve(coeffs, np.zeros([1, dim])))
+#print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.zeros(dim-1)))
+#print(np.matrix(coeffs)[:dim-1,:dim-1])
+#print(np.matrix(coeffs)[:dim-1,dim-1])
+print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))

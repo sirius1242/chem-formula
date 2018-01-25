@@ -47,8 +47,13 @@ try:
         coes.append(Fraction(i[0]).limit_denominator())
     for i in coes:
         a = lcm(a, i.denominator)
-    for i in coes:
-        print(abs(i*a))
-    print(a)
+    coes.append(1)
+    for i in range(len(coes)):
+        coes[i] = abs(coes[i]*a)
+    for i in range(len(coes)):
+        coes[i] = str(int(coes[i])) + ' ' + (rea_comps+pro_comps)[i]
+    coes[len(rea_comps)-1]+=' = '+coes[len(rea_comps)]
+    del coes[len(rea_comps)]
+    print(' + '.join(coes))
 except np.linalg.LinAlgError:
     print("Warning: the number of elements is too small")

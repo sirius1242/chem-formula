@@ -12,10 +12,4 @@ Al2O3+HCl=AlCl3+H2O
 
 and program output the result:
 
-1.0
-
-6.0
-
-2.0
-
-3.0
+1 Al2O3 + 6 HCl = 2 AlCl3 + 3 H2O

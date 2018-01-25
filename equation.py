@@ -1,8 +1,11 @@
 import re
 import numpy as np
+from fractions import gcd, Fraction
 
 rad_num = {}
 
+def lcm(x, y):
+    return x*y/gcd(x,y)
 rea, pro = input('please enter the chemistry equation\n').split('=')
 rea_comps = rea.split('+')
 pro_comps = pro.split('+')
@@ -35,4 +38,17 @@ print(coeffs)
 #print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.zeros(dim-1)))
 #print(np.matrix(coeffs)[:dim-1,:dim-1])
 #print(np.matrix(coeffs)[:dim-1,dim-1])
-print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))
+a = 1
+coes = []
+try:
+    #print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))
+    for i in np.array(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1])):
+        #print(Fraction(i[0]).limit_denominator())
+        coes.append(Fraction(i[0]).limit_denominator())
+    for i in coes:
+        a = lcm(a, i.denominator)
+    for i in coes:
+        print(abs(i*a))
+    print(a)
+except np.linalg.LinAlgError:
+    print("Warning: the number of elements is too small")

@@ -1,7 +1,7 @@
 # A simple program to balance some chemistry equations
 ### environment: python3 with re, numpy and fractions libs installed
 #### caution: only based on conservation of mass, so not work for equations with less elements than components, and not work for equations with brackets
-##Usage:
+## Usage:
 **Linux Environment:**
 ```
 ./equation.py

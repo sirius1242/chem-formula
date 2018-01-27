@@ -20,7 +20,7 @@ for i in rea_comps:
     for j in rea_eles[-1]:
         if '(' in j:
             rea_eles[-1].remove(j)
-            for k in range(int(re.findall('\d*$', j)[0])):
+            for k in range(int(re.findall('\d*$', j)[0] if re.findall('\d*$', j)!=[''] else '1')):
                 for m in re.findall('[A-Z][a-z]?\d*', re.findall('\((.*?)\)', j)[0]):
                     rea_eles[-1].append(m)
 for i in pro_comps:
@@ -28,7 +28,7 @@ for i in pro_comps:
     for j in pro_eles[-1]:
         if '(' in j:
             pro_eles[-1].remove(j)
-            for k in range(int(re.findall('\d*$', j)[0])):
+            for k in range(int(re.findall('\d*$', j)[0] if re.findall('\d*$', j)!=[''] else '1')):
                 for m in re.findall('[A-Z][a-z]?\d*', re.findall('\((.*?)\)', j)[0]):
                     pro_eles[-1].append(m)
 for ele in range(len(eles)):
@@ -53,20 +53,17 @@ print(coeffs)
 #print(np.matrix(coeffs)[:dim-1,dim-1])
 a = 1
 coes = []
-try:
-    #print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))
-    for i in np.array(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1])):
-        #print(Fraction(i[0]).limit_denominator())
-        coes.append(Fraction(i[0]).limit_denominator())
-    for i in coes:
-        a = lcm(a, i.denominator)
-    coes.append(1)
-    for i in range(len(coes)):
-        coes[i] = abs(coes[i]*a)
-    for i in range(len(coes)):
-        coes[i] = str(int(coes[i])) + ' ' + (rea_comps+pro_comps)[i]
-    coes[len(rea_comps)-1]+=' = '+coes[len(rea_comps)]
-    del coes[len(rea_comps)]
-    print(' + '.join(coes))
-except np.linalg.LinAlgError:
-    print("Warning: the number of elements is too small")
+#print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))
+for i in np.array(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1])):
+    #print(Fraction(i[0]).limit_denominator())
+    coes.append(Fraction(i[0]).limit_denominator())
+for i in coes:
+    a = lcm(a, i.denominator)
+coes.append(1)
+for i in range(len(coes)):
+    coes[i] = abs(coes[i]*a)
+for i in range(len(coes)):
+    coes[i] = str(int(coes[i])) + ' ' + (rea_comps+pro_comps)[i]
+coes[len(rea_comps)-1]+=' = '+coes[len(rea_comps)]
+del coes[len(rea_comps)]
+print(' + '.join(coes))

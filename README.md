@@ -1,6 +1,6 @@
 # A simple program to balance some chemistry equations
 ### environment: python3 with re, numpy and fractions libs installed
-#### caution: only based on conservation of mass, so not work for equations with less elements than components, and not work for equations with brackets
+#### caution: only based on conservation of mass, so not work for equations with less elements than components, and only work for equations with parentheses
 ## Usage:
 **Linux Environment:**
 ```
@@ -12,8 +12,8 @@ python equation.py
 ```
 when prompt shown, enter the equation:
 ### example
-Al2O3+HCl=AlCl3+H2O
+Fe3C+HNO3=Fe(NO3)3+CO2+NO2+H2O
 
 and program output the result:
 
-1 Al2O3 + 6 HCl = 2 AlCl3 + 3 H2O
+1 Fe3C + 22 HNO3 = 3 Fe(NO3)3 + 1 CO2 + 13 NO2 + 11 H2O

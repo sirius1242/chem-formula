@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import re
 import numpy as np
 from fractions import gcd, Fraction
@@ -13,12 +13,24 @@ pro_comps = pro.split('+')
 rea_eles = []
 pro_eles = []
 dim = len(rea_comps) + len(pro_comps)
-eles = list(set(re.findall('[A-Z][a-z]?|\((?:[^()]*(?:\(.*\))?[^()]*)+\)', rea)))
+eles = list(set(re.findall('[A-Z][a-z]?', rea)))
 coeffs = np.zeros([len(eles), dim])
 for i in rea_comps:
-    rea_eles.append(re.findall('[A-Z][a-z]?\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d+', i))
+    rea_eles.append(re.findall('[A-Z][a-z]?\d*|\(.*?\)\d*', i))
+    for j in rea_eles[-1]:
+        if '(' in j:
+            rea_eles[-1].remove(j)
+            for k in range(int(re.findall('\d*$', j)[0])):
+                for m in re.findall('[A-Z][a-z]?\d*', re.findall('\((.*?)\)', j)[0]):
+                    rea_eles[-1].append(m)
 for i in pro_comps:
-    pro_eles.append(re.findall('[A-Z][a-z]?\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d+', i))
+    pro_eles.append(re.findall('[A-Z][a-z]?\d*|\(.*?\)\d*', i))
+    for j in pro_eles[-1]:
+        if '(' in j:
+            pro_eles[-1].remove(j)
+            for k in range(int(re.findall('\d*$', j)[0])):
+                for m in re.findall('[A-Z][a-z]?\d*', re.findall('\((.*?)\)', j)[0]):
+                    pro_eles[-1].append(m)
 for ele in range(len(eles)):
     for i in range(len(rea_eles)):
         for j in rea_eles[i]:

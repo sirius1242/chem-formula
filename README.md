@@ -6,6 +6,10 @@
 ```
 ./equation.py
 ```
+or
+```
+python equation.py
+```
 when prompt shown, enter the equation:
 ### example
 Al2O3+HCl=AlCl3+H2O

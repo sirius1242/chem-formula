@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import re
 import numpy as np
 from fractions import gcd, Fraction

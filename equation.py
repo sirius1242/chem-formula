@@ -48,13 +48,16 @@ for ele in range(len(eles)):
                     coeffs[ele][i] -= 1
 
 print(coeffs)
+if coeffs.shape[0] < coeffs.shape[1] - 1:
+    print("Error: more items than elements")
+    exit()
 #print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.zeros(dim-1)))
 #print(np.matrix(coeffs)[:dim-1,:dim-1])
 #print(np.matrix(coeffs)[:dim-1,dim-1])
 a = 1
 coes = []
 #print(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1]))
-for i in np.array(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,dim-1])):
+for i in np.array(np.linalg.solve(np.matrix(coeffs)[:dim-1,:dim-1], np.matrix(coeffs)[:dim-1,-1])):
     #print(Fraction(i[0]).limit_denominator())
     coes.append(Fraction(i[0]).limit_denominator())
 for i in coes:
